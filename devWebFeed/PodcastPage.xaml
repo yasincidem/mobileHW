@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="devWebFeed.PodcastPage">
+    <ContentPage.Content>
+        <ListView x:Name="podcastsLV"
+                  HasUnevenRows="True">
+          <ListView.ItemTemplate>
+              <DataTemplate>
+            <ViewCell>
+                <Grid >
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <Image Grid.RowSpan="2"
+                            Source="{Binding item.channel_image}"
+                            Aspect="AspectFit"
+                            HeightRequest="100"
+                            WidthRequest="100"
+                            InputTransparent="True"
+                            Margin="8"/>
+                    <Label Grid.Row="0"
+                           Grid.Column="1"
+                           FontSize="20"
+                           Text="{Binding item.title}"
+                           Margin="10"/>
+                    <Label Grid.Row="1"
+                           Grid.Column="1"
+                           FontSize="12"
+                           Text="{Binding item.description}"
+                           Margin="10"/>
+                    <Grid.GestureRecognizers>
+                            <TapGestureRecognizer CommandParameter="{Binding item.channel_uuid}" Tapped="Handle_Tapped" NumberOfTapsRequired="1"/>
+                    </Grid.GestureRecognizers>
+                </Grid>
+            </ViewCell>
+        </DataTemplate>
+          </ListView.ItemTemplate>
+        </ListView>
+    </ContentPage.Content>
+</ContentPage>

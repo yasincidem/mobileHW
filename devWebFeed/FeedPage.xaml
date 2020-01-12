@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="devWebFeed.FeedPage">
+    <ContentPage.Resources>
+    <ResourceDictionary>
+        <Style x:Key="mTitleStyle" TargetType="Label">
+            <Setter Property="TextColor" Value="DarkViolet"/>
+            <Setter Property="FontSize" Value="30"/>
+        </Style>
+    </ResourceDictionary>
+</ContentPage.Resources>
+    <ContentPage.Content>
+        <StackLayout>
+            <StackLayout Orientation="Horizontal" VerticalOptions="Start">
+                <ListView x:Name="postsLV"  HasUnevenRows="True" >
+                  <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Grid Margin="16">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <Label Grid.Row="0"
+                                   Text="{Binding title}"
+                                   Style="{StaticResource mTitleStyle}"
+                                   Margin="10"/>
+                            <Label Grid.Row="2"
+                                   Text="{Binding author}"
+                                   Margin="10, 4, 10, 0"/>
+                            <Label Grid.Row="3"
+                                   Text="{Binding submitted}"
+                                   Margin="10, 4, 10, 0"/>
+                            <Grid.GestureRecognizers>
+                                <TapGestureRecognizer CommandParameter="{Binding url}" Tapped="Handle_Tapped" NumberOfTapsRequired="1"/>
+                            </Grid.GestureRecognizers>
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+            </ListView>
+            </StackLayout>
+            <StackLayout Margin="8" VerticalOptions="End">
+                <Picker Margin="8" x:Name="YearPicker" Title="Year" SelectedIndexChanged="YearSelected" HorizontalOptions="FillAndExpand">
+                    <Picker.Items>
+                        <x:String>2020</x:String> 
+                        <x:String>2019</x:String>
+                        <x:String>2018</x:String>
+                        <x:String>2017</x:String>
+                        <x:String>2016</x:String>
+                        <x:String>2015</x:String>
+                        <x:String>2014</x:String>
+                        <x:String>2013</x:String>
+                        <x:String>2012</x:String>
+                        <x:String>2011</x:String>
+                        <x:String>2010</x:String>
+                        <x:String>2009</x:String>
+                        <x:String>2008</x:String>
+                        <x:String>2007</x:String>
+                        <x:String>2006</x:String>
+                    </Picker.Items>
+                </Picker>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+      
+</ContentPage>

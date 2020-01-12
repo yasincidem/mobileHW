@@ -1,0 +1,110 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="devWebFeed.TrendingPage">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="mTitleStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="DarkViolet"/>
+                <Setter Property="FontSize" Value="20"/>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <StackLayout>
+            <StackLayout Orientation="Horizontal" VerticalOptions="Start">
+        <ListView x:Name="repositoriesLV"  HasUnevenRows="True">
+          <ListView.ItemTemplate>
+            <DataTemplate>
+                <ViewCell>
+                    <Grid Margin="16">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Label Grid.Row="0"
+                               Grid.ColumnSpan="2"
+                               Text="{Binding name}"
+                               FontSize="25"
+                               TextColor="{Binding languageColor}"/>
+
+                        <Label Grid.Row="1"
+                               Grid.ColumnSpan="2"
+                               Text="{Binding description}"/>
+
+                        <Label Grid.Row="2"
+                               Grid.Column="0"
+                               Text="{Binding stars,StringFormat='Stars: {0:F0}'}"
+                               Margin="0,8"/>
+
+                        <Label Grid.Row="2"
+                               Grid.Column="1"
+                               Text="{Binding forks,StringFormat='Forks: {0:F0}'}"
+                               Margin="0,8"/>
+
+
+                        <Label Grid.Row="0"
+                               Grid.Column="1"
+                               HorizontalOptions="End"
+                               FontSize="16"
+                               Text="{Binding language}"
+                               Margin="8"/>
+
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer CommandParameter="{Binding url}" Tapped="Handle_Tapped" NumberOfTapsRequired="1"/>
+                        </Grid.GestureRecognizers>
+                    </Grid>
+                </ViewCell>
+            </DataTemplate>
+          </ListView.ItemTemplate>
+        </ListView>
+        </StackLayout>
+        <StackLayout Margin="8" VerticalOptions="End">
+            <Grid>
+                <Picker Grid.Column="0" Margin="8" x:Name="LanguagePicker" Title="Language" SelectedIndexChanged="LanguageSelected" HorizontalOptions="CenterAndExpand">
+                    <Picker.Items>
+                        <x:String></x:String>
+                        <x:String>c</x:String>
+                        <x:String>c++</x:String>
+                        <x:String>clojure</x:String>
+                        <x:String>dart</x:String>
+                        <x:String>elixir</x:String>
+                        <x:String>elm</x:String>
+                        <x:String>erlang</x:String>
+                        <x:String>go</x:String>
+                        <x:String>haskell</x:String>
+                        <x:String>java</x:String>
+                        <x:String>javascript</x:String>
+                        <x:String>julia</x:String>
+                        <x:String>kotlin</x:String>
+                        <x:String>lua</x:String>
+                        <x:String>objective-c</x:String>
+                        <x:String>perl</x:String>
+                        <x:String>php</x:String>
+                        <x:String>python</x:String>
+                        <x:String>r</x:String>
+                        <x:String>ruby</x:String>
+                        <x:String>rust</x:String>
+                        <x:String>scala</x:String>
+                        <x:String>swift</x:String>
+                    </Picker.Items>
+                </Picker>
+                <Picker Grid.Column="1" Margin="8" x:Name="SincePicker" Title="Since" SelectedIndexChanged="SinceSelected" HorizontalOptions="CenterAndExpand">
+                    <Picker.Items>
+                        <x:String>daily</x:String> 
+                        <x:String>weekly</x:String>
+                        <x:String>monthly</x:String>
+                    </Picker.Items>
+                </Picker>
+            </Grid>
+        </StackLayout>
+    </StackLayout>
+    </ContentPage.Content>
+      
+</ContentPage>
